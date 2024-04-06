@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     DESCRIPTION: str = "app for bug replication"
     HOST: str = os.getenv("DEV_HOST", "127.0.0.1")
     PORT: PositiveInt = int(os.getenv("DEV_PORT", "8008"))
-    FASTAPI_CORS_ORIGINS: str = os.getenv("FASTAPI_CORS_ORIGINS", "").split(",")
+    FASTAPI_CORS_ORIGINS: list = os.getenv("FASTAPI_CORS_ORIGINS", "").split(",")
     DB_URL: PostgresDsn = (
         "postgresql+asyncpg://postgres@localhost:5432/test-db"
     )

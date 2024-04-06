@@ -12,8 +12,8 @@ class Base(DeclarativeBase):
     pass
 
 
-engine = create_async_engine(settings.DB_URL)
+async_engine = create_async_engine(settings.DB_URL.unicode_string())
 
 async def get_db():
-    async with AsyncSession(engine) as session:
+    async with AsyncSession(async_engine) as session:
         yield session

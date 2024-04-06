@@ -1,12 +1,16 @@
 from fastapi import FastAPI
-from fastapi.exceptions import HTTPException, RequestValidationError
 from starlette.middleware.cors import CORSMiddleware
+
 
 from app.router import user
 
 from app.settings import settings
 
-app = FastAPI(title=settings.APP_NAME, description=settings.DESCRIPTION)
+app = FastAPI(
+    title=settings.APP_NAME, 
+    description=settings.DESCRIPTION,
+    lifespan=None
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,6 +22,3 @@ app.add_middleware(
 
 # Add main routes to the api
 app.include_router(user.router)
-
-
-
